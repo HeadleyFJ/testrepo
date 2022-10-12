@@ -6,6 +6,6 @@ fig = plt.figure()
 
 x = [1,2,3,4,5]
 y = [2,4,7,5,2]
-plt.(x,y) 
+plt.scatter(x,y) 
 
 st.pyplot(fig)

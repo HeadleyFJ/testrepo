@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 fig = plt.figure() 
 
 x = [1,2,3,4,5]
-y = [2,4,7,5,2]
+y = [2,4,3,5,4]
 plt.scatter(x,y) 
 
 st.pyplot(fig)

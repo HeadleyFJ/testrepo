@@ -14,7 +14,7 @@ two_subplot_fig = plt.figure(figsize=(8,8))
 plt.subplot(211)
 plt.plot(t1, f(t1), color='tab:blue', marker=',')
 with st.expander("Click here to to learn"):
-    st.code("""
+    st.write("""
 apples are an important part of everybodies diet
 i sure do love apples!""")
 

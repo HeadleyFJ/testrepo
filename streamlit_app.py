@@ -8,9 +8,15 @@ def f(t):
 t1 = np.arange(0.0, 5.0, 0.1)
 t2 = np.arange(0.0, 5.0, 0.02)
 
+st.header("Look at this cool header!")
 two_subplot_fig = plt.figure(figsize=(8,8))
 plt.subplot(211)
 plt.plot(t1, f(t1), color='tab:blue', marker=',')
+with st.expander("Click here to to learn"):
+    st.code("""
+apples are an important part of everybodies diet
+i sure do love apples!""")
+
 plt.plot(t2, f(t2), color='black', marker='.')
 
 plt.subplot(212)

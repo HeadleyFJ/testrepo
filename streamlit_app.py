@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt, mpld3
 import numpy as np
 from mpld3 import plugins
+import streamlit as st
 import streamlit.components.v1 as components
 def f(t):
     return np.exp(-t) * np.cos(2*np.pi*t)

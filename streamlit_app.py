@@ -32,7 +32,7 @@ table
 th
 {
   color: #ffffff;
-  background-color: #000000;
+  background-color: #003300;
 }
 td
 {

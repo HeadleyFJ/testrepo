@@ -1,67 +1,34 @@
- 
+import streamlit as st
+import streamlit.components.v1 as components
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import streamlit as st
+ 
 
-# Fixing random state for reproducibility
-np.random.seed(19680801)
+def func(t, line):
+    t = np.arange(0,t,0.1)
+    y = np.sin(t)
+    line.set_data(t, y)
+    return line
+ 
+fig = plt.figure()
+ax = plt.axes(xlim=(0, 100), ylim=(-1.2, 1.22))
+redDots = plt.plot([], [], 'ro')
+line = plt.plot([], [], lw=2)
+ 
 
+# Creating the Animation object
+line_ani = animation.FuncAnimation(fig, func, frames=np.arange(1,100,0.1), fargs=(line), interval=100, blit=False)
+#line_ani.save(r'Animation.mp4')
+ 
+ 
 
-# Create new Figure with black background
-fig = plt.figure(figsize=(8, 8), facecolor='black')
-
-# Add a subplot with no frame
-ax = plt.subplot(frameon=False)
-
-# Generate random data
-data = np.random.uniform(0, 1, (64, 75))
-X = np.linspace(-1, 1, data.shape[-1])
-G = 1.5 * np.exp(-4 * X ** 2)
-
-# Generate line plots
-lines = []
-for i in range(len(data)):
-    # Small reduction of the X extents to get a cheap perspective effect
-    xscale = 1 - i / 200.
-    # Same for linewidth (thicker strokes on bottom)
-    lw = 1.5 - i / 100.0
-    line, = ax.plot(xscale * X, i + G * data[i], color="w", lw=lw)
-    lines.append(line)
-
-# Set y limit (or first line is cropped because of thickness)
-ax.set_ylim(-1, 70)
-
-# No ticks
-ax.set_xticks([])
-ax.set_yticks([])
-
-# 2 part titles to get different font weights
-ax.text(0.5, 1.0, "MATPLOTLIB ", transform=ax.transAxes,
-        ha="right", va="bottom", color="w",
-        family="sans-serif", fontweight="light", fontsize=16)
-ax.text(0.5, 1.0, "UNCHAINED", transform=ax.transAxes,
-        ha="left", va="bottom", color="w",
-        family="sans-serif", fontweight="bold", fontsize=16)
-
-
-def update(*args):
-    # Shift all data to the right
-    data[:, 1:] = data[:, :-1]
-
-    # Fill-in new values
-    data[:, 0] = np.random.uniform(0, 1, len(data))
-
-    # Update data
-    for i in range(len(data)):
-        lines[i].set_ydata(i + G * data[i])
-
-    # Return modified artists
-    return lines
-
-# Construct the animation, using the update function as the animation director.
-anim = animation.FuncAnimation(fig, update, interval=10)
-
-
-st.title("this is an animation")
-plt.show()
+#HtmlFile = line_ani.to_html5_video()
+with open("myvideo.html","w") as f:
+  print(line_ani.to_html5_video(), file=f)
+  
+HtmlFile = open("myvideo.html", "r")
+#HtmlFile="myvideo.html"
+source_code = HtmlFile.read() 
+components.html(source_code, height = 900,width=900)

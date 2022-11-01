@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import time
  
 progress_bar = st.progress(0)
 status_text = st.empty()

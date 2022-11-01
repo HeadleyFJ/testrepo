@@ -24,7 +24,7 @@ for i in range(100):
     chart.add_rows(new_rows)
 
     # Pretend we're doing some computation that takes time.
-    time.sleep(0.25)
+    #time.sleep(0.25)
 
 status_text.text('Done!')
 st.balloons()

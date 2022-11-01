@@ -5,30 +5,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
  
+progress_bar = st.progress(0)
+status_text = st.empty()
+chart = st.line_chart(np.random.randn(10, 2))
 
-def func(t, line):
-    t = np.arange(0,t,0.1)
-    y = np.sin(t)
-    line.set_data(t, y)
-    return line
- 
-fig = plt.figure()
-ax = plt.axes(xlim=(0, 100), ylim=(-1.2, 1.22))
-redDots = plt.plot([], [], 'ro')
-line = plt.plot([], [], lw=2)
- 
+for i in range(100):
+    # Update progress bar.
+    progress_bar.progress(i + 1)
 
-# Creating the Animation object
-line_ani = animation.FuncAnimation(fig, func, frames=np.arange(1,100,0.1), fargs=(line), interval=100, blit=False)
-#line_ani.save(r'Animation.mp4')
- 
- 
+    new_rows = np.random.randn(10, 2)
 
-#HtmlFile = line_ani.to_html5_video()
-with open("myvideo.html","w") as f:
-  print(line_ani.to_html5_video(), file=f)
-  
-HtmlFile = open("myvideo.html", "r")
-#HtmlFile="myvideo.html"
-source_code = HtmlFile.read() 
-components.html(source_code, height = 900,width=900)
+    # Update status text.
+    status_text.text(
+        'The latest random number is: %s' % new_rows[-1, 1])
+
+    # Append data to the chart.
+    chart.add_rows(new_rows)
+
+    # Pretend we're doing some computation that takes time.
+    time.sleep(0.1)
+
+status_text.text('Done!')
+st.balloons()

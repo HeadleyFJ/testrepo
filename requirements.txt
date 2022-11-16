@@ -4,3 +4,6 @@ plotly
 streamlit
 mpld3
 numpy
+streamlit.components.v1
+matplotlib.pyplot
+matplotlib.animation

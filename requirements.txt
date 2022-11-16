@@ -4,3 +4,4 @@ plotly
 streamlit
 mpld3
 numpy
+animation

@@ -1,6 +1,7 @@
 import rebound
 import streamlit as st
 
+st.write("hi")
 
 sim = rebound.Simulation()
 sim.add(m=1) # add a star

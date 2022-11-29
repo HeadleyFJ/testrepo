@@ -5,3 +5,5 @@ streamlit
 mpld3
 numpy
 animation
+rebound
+ipywidgets
